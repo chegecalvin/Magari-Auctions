@@ -26,7 +26,7 @@ class Car:
         if isinstance(make,str):
             self._make=make
         else:
-            raise Exception("Make must be a string")
+            raise Exception("Input a valid make")
     make=property(get_make,set_make)
 
     def get_price(self):
@@ -106,5 +106,15 @@ class Car:
         """
         row=CURSOR.execute(sql,(id,)).fetchone
         return cls.instance(row) if row else None
+    
+    def participants(self):
+        from lib.models.participant import Participant
+        sql= """
+           SELECT * FROM participants
+           WHERE car_id=?
+        """
+        CURSOR.execute(sql,(self.id,),)
+        all_rows=CURSOR.fetchall()
+        return [Participant.instance(row) for row in all_rows ]
 
 
