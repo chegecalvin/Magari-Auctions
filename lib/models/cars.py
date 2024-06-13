@@ -9,11 +9,14 @@ class Car:
         self.make=make
         self.price=price
 
+    def __repr__(self):
+        return f"id: {self.id} manufacture_yr: {self.manufacture_yr} make: {self.make} price: {self.price}"
+
     def get_manufacture_yr(self):
         return self._manufacture_yr
 
     def set_manufacture_yr(self,manufacture_yr):
-        if isinstance(manufacture_yr,int) and (2000<=len(manufacture_yr)<=2024) :
+        if isinstance(manufacture_yr,int) and (2000<=manufacture_yr<=2024) :
             self._manufacture_yr=manufacture_yr
         else:
             raise Exception("Year of manufacture must be a valid year between 2000 and 2024")
@@ -33,11 +36,11 @@ class Car:
         return self._price
     
     def set_price(self,price):
-        if isinstance(price,int) and len(price)> 0:
+        if isinstance(price,int) and price> 0:
             self._price=price
         else:
             raise Exception("Price must be a value greater than 0")
-    price=property()
+    price=property(get_price,set_price)
 
     @classmethod
     def create_table(cls):
@@ -45,8 +48,15 @@ class Car:
            CREATE TABLE IF NOT EXISTS cars(
            id INTEGER PRIMARY KEY,
            make TEXT,
-           manufacture_yr INTEGER
+           manufacture_yr INTEGER,
            price INTEGER)
+        """
+        CURSOR.execute(sql)
+        CONN.commit()
+
+    def drop_table():
+        sql="""
+           DROP TABLE IF EXISTS cars
         """
         CURSOR.execute(sql)
         CONN.commit()
@@ -54,7 +64,7 @@ class Car:
     def save(self):
         sql= """
            INSERT INTO cars (make,manufacture_yr,price)
-           VALUES(?,?)
+           VALUES(?,?,?)
         """
         CURSOR.execute(sql,(self.make,self.manufacture_yr,self.price))
         CONN.commit()
@@ -78,16 +88,10 @@ class Car:
         self.id=None
 
     @classmethod
-    def instance(cls,row):
-        car=cls.all.get(row[0])
-        if car:
-            car.make=row[1]
-            car.maufacture_yr=row[2]
-            car.price=row[3]
-        else:
-            car=cls(row[1],row[2],row[3])
-            car.id=row[0]
-            cls.all[car.id]=car
+    def instance(cls, row):
+        car = cls(row[1], row[2], row[3])
+        car.id = row[0]
+        cls.all[car.id] = car
         return car
     
     @classmethod
@@ -96,7 +100,11 @@ class Car:
            SELECT * FROM cars
         """
         all_rows=CURSOR.execute(sql).fetchall()
-        return [cls.instance(row) for row in all_rows]
+        cars=[]
+        for row in all_rows:
+            car=cls.instance(row)
+            cars.append(car)
+        return cars
     
     @classmethod
     def get_by_id(cls,id):
