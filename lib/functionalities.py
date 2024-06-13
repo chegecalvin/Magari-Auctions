@@ -3,7 +3,7 @@ from models.participant import Participant
 
 def create_car():
     Car.create_table()
-    print("Car table created.")
+    print("Cars table created")
 
 def list_cars():
     cars = Car.get_all_cars()
@@ -16,7 +16,7 @@ def find_car_by_id():
         car = Car.get_by_id(id_)
         print(car) if car else print("Car id not found")
     except ValueError:
-        print("Invalid input. Please enter a numeric ID.")
+        print("Invalid input")
 
 def add_car():
     try:
@@ -40,7 +40,11 @@ def remove_car():
         else:
             print("Error: Car not found")
     except ValueError:
-        print("Invalid input. Please enter a numeric ID.")
+        print("Invalid input")
+
+def  create_participants():
+    Participant.create_table()
+    print("Participants table created")
 
 def list_participants():
     participants = Participant.get_all_participants()
@@ -53,7 +57,7 @@ def find_participant_by_id():
         participant = Participant.get_by_id(id_)
         print(participant) if participant else print("Participant not found")
     except ValueError:
-        print("Invalid input. Please enter a numeric ID.")
+        print("Invalid input")
 
 def find_participant_by_name():
     name = input("Enter participant's name: ")
@@ -83,7 +87,7 @@ def remove_participant():
         else:
             print("Error: Participant not found")
     except ValueError:
-        print("Invalid input. Please enter a numeric ID.")
+        print("Invalid input")
 
 def exit_program():
     print("Thank you!")

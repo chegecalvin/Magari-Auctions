@@ -9,6 +9,7 @@ from functionalities import (
     list_participants,
     find_participant_by_id,
     find_participant_by_name,
+    create_participants,
     register_participant,
     remove_participant,
     exit_program
@@ -30,16 +31,18 @@ def main():
         elif choice == "4":
             remove_car()
         elif choice == "5":
-            list_participants()
+            create_participants()
         elif choice == "6":
-            find_participant_by_id()
+            list_participants()
         elif choice == "7":
-            find_participant_by_name()
+            find_participant_by_id()
         elif choice == "8":
-            register_participant()
+            find_participant_by_name()
         elif choice == "9":
-            remove_participant()
+            register_participant()
         elif choice == "10":
+            remove_participant()
+        elif choice == "11":
             exit_program()
         else:
             print("Invalid choice")
@@ -47,17 +50,18 @@ def main():
 
 def menu():
     print("Please select an option:")
-    print("0. Create cars")
+    print("0. Create cars database")
     print("1. View all cars on auction")
     print("2. Find car by Id")
     print("3. Put up a car for auction")
     print("4. Remove car from auction")
-    print("5. View all participants")
-    print("6. Find participant by id")
-    print("7. Find participant by name")
-    print("8. Register participant")
-    print("9. Remove participant")
-    print("10. Exit program")
+    print("5. Create participants database")
+    print("6. View all participants")
+    print("7. Find participant by id")
+    print("8. Find participant by name")
+    print("9. Register participant")
+    print("10. Remove participant")
+    print("11. Exit program")
 
 
 if __name__ == "__main__":

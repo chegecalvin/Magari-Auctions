@@ -31,35 +31,25 @@ To run this application locally, follow these steps:
 3. Install dependencies:
 
    ```bash
-   npm install
+   pipenv install
    ```
 
-4. Start up the json-server on http://localhost:3001/cars
+4. Set up the virtual environment
 
    ```bash
-   npm run server
+   pipenv shell
    ```
 
-4. On another tab start up the react app
+4. Run the cli application
 
    ```bash
-   npm start
+   python lib/cli.py
    ```
-
----
-
-## Contributors
-
-1. Audrey Cherop
-2. Akisa Moruri
-3. Brian Juma
-4. Calvin Chege
-5. Casey Kimamo
 
 ---
 
 ## Contact Us
 
 For any inquiries or suggestions, feel free to email us at:
-     cabacwheels@gmail.com
+     magariauctions@gmail.com
         
