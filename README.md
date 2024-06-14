@@ -2,7 +2,7 @@
 
 ## About Us
 
-Magari auctions is a CLI application paired with SQLite which helps manage the database. Magari auctions is an interactive application which can be used by both the person putting up a car for auction and the people taking part in the auction who are the participants.
+Magari Auctions is a CLI application paired with SQLite which helps manage the database. Magari Auctions is an interactive application which can be used by both the person putting up a car for auction and the people taking part in the auction who are the participants.
 
 ---
 
